@@ -6,31 +6,6 @@ A professional, TypeScript-based CLI tool for converting Markdown files to beaut
 [![Jest](https://img.shields.io/badge/Jest-29.7-green.svg)](https://jestjs.io/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Features
-
-- 🚀 **Fast & Efficient** - Powered by marked, one of the fastest Markdown parsers
-- 📁 **Batch Processing** - Convert entire directories of Markdown files at once
-- 🎨 **Beautiful Defaults** - Clean, responsive HTML output with built-in styling
-- 🔧 **Customizable** - Support for custom HTML templates
-- ✅ **GitHub Flavored Markdown** - Full GFM support including tables and task lists
-- 📊 **Comprehensive Testing** - Full unit and integration test coverage with Jest
-- 🛡️ **Error Handling** - Graceful handling of missing files and directories
-- 💻 **TypeScript** - Type-safe codebase for better developer experience
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Single File Conversion](#single-file-conversion)
-  - [Batch Directory Conversion](#batch-directory-conversion)
-  - [Custom Templates](#custom-templates)
-- [Development](#development)
-- [Testing](#testing)
-- [Project Structure](#project-structure)
-- [API Documentation](#api-documentation)
-- [AI-Assisted Development](#ai-assisted-development)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
@@ -77,6 +52,8 @@ node dist/index.js convert example.md
 
 # If globally linked
 md-to-html convert example.md
+
+# You can also use demo.md for testing
 ```
 
 ### Specify Output File
@@ -285,20 +262,4 @@ This project demonstrates how AI-assisted development can accelerate creation of
 - **ts-jest** (^29.1.1) - TypeScript preprocessor for Jest
 - **ts-node** (^10.9.2) - TypeScript execution engine
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ---
-
-**Built with ❤️ using TypeScript and GitHub Copilot**
