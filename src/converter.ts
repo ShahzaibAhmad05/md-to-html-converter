@@ -43,6 +43,7 @@ function createDefaultHtmlDocument(content: string): string {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Converted Document</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
       max-width: 800px;
@@ -98,4 +99,83 @@ function createDefaultHtmlDocument(content: string): string {
 ${content}
 </body>
 </html>`;
+}
+
+/**
+ * Processes all Markdown files in a directory and converts them to HTML
+ * @param sourceFolder - Path to the folder containing .md files
+ * @param targetFolder - Path to the folder where HTML files will be written
+ * @param templatePath - Optional path to an HTML template file
+ * @returns Promise that resolves when all files are processed
+ */
+export async function processDirectory(
+  sourceFolder: string,
+  targetFolder: string,
+  templatePath?: string
+): Promise<void> {
+  // Ensure source folder exists
+  if (!await fs.pathExists(sourceFolder)) {
+    console.error(`Error: Source folder does not exist: ${sourceFolder}`);
+    return;
+  }
+
+  // Create target folder if it doesn't exist
+  try {
+    await fs.ensureDir(targetFolder);
+  } catch (error) {
+    console.error(`Error: Could not create target folder: ${targetFolder}`);
+    console.error(error instanceof Error ? error.message : String(error));
+    return;
+  }
+
+  // Read all files in the source folder
+  let files: string[];
+  try {
+    files = await fs.readdir(sourceFolder);
+  } catch (error) {
+    console.error(`Error: Could not read source folder: ${sourceFolder}`);
+    console.error(error instanceof Error ? error.message : String(error));
+    return;
+  }
+
+  // Filter for .md files
+  const markdownFiles = files.filter(file => file.toLowerCase().endsWith('.md'));
+
+  if (markdownFiles.length === 0) {
+    console.log(`No Markdown files found in ${sourceFolder}`);
+    return;
+  }
+
+  let successCount = 0;
+  let errorCount = 0;
+
+  // Process each markdown file
+  for (const file of markdownFiles) {
+    const inputPath = path.join(sourceFolder, file);
+    const outputFileName = file.replace(/\.md$/i, '.html');
+    const outputPath = path.join(targetFolder, outputFileName);
+
+    try {
+      // Read markdown content
+      const markdown = await fs.readFile(inputPath, 'utf-8');
+
+      // Convert to HTML
+      const html = await convertMarkdownToHtml(markdown, templatePath);
+
+      // Write HTML output
+      await fs.writeFile(outputPath, html, 'utf-8');
+
+      console.log(`✓ Converted: ${file} → ${outputFileName}`);
+      successCount++;
+    } catch (error) {
+      console.error(`✗ Error converting ${file}:`);
+      console.error(`  ${error instanceof Error ? error.message : String(error)}`);
+      errorCount++;
+    }
+  }
+
+  console.log(`\nProcessed ${successCount} of ${markdownFiles.length} file(s) from ${sourceFolder} to ${targetFolder}`);
+  if (errorCount > 0) {
+    console.log(`${errorCount} file(s) failed to convert`);
+  }
 }

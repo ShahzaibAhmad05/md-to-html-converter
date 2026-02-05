@@ -21,3 +21,7 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
+
+# Temporary files
+demo.html
+temp/
