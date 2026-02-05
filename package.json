@@ -1,0 +1,36 @@
+{
+  "name": "md-to-html-converter",
+  "version": "1.0.0",
+  "description": "A CLI tool to convert Markdown files to HTML",
+  "main": "dist/index.js",
+  "bin": {
+    "md-to-html": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "watch": "tsc --watch",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "markdown",
+    "html",
+    "converter",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^12.0.0",
+    "fs-extra": "^11.2.0",
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/fs-extra": "^11.0.4",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "rimraf": "^5.0.5"
+  }
+}
