@@ -4,7 +4,6 @@ A professional, TypeScript-based CLI tool for converting Markdown files to beaut
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Jest](https://img.shields.io/badge/Jest-29.7-green.svg)](https://jestjs.io/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 
 ## Installation
